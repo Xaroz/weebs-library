@@ -3,17 +3,17 @@ import ImageSeasonal from "../Components/ImageSeasonal";
 import { useFetch } from "../Components/useFetch";
 
 export default function HomePage() {
-  const { data, loading } = useFetch("https://api.jikan.moe/v3/season");
+  const { data } = useFetch("https://api.jikan.moe/v3/season");
 
   useEffect(() => {
     document.title = "Homepage";
   });
 
   return (
-    <div className="container">
+    <div className="container text-center">
       <div className="jumbotron jumbotron-fluid">
         <div className="container">
-          <h1 className="display-4 text-center">Seasonal Anime</h1>
+          <h1 className="display-4 ">Seasonal Anime</h1>
         </div>
       </div>
 
