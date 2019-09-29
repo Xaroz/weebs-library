@@ -1,13 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
+import { UserContext } from "./Components/UserContext";
 
 export default function Navbar() {
   const [value, setValue] = useState("Anime");
+  const { user, setUser } = useContext(UserContext);
 
   const handleChange = event => {
     setValue(event.target.value);
   };
-  
+
   return (
     <nav className="navbar navbar-expand-md navbar-light bg-light fixed-top">
       <Link to="/" className="navbar-brand">
@@ -48,18 +50,37 @@ export default function Navbar() {
           </button>
         </form>
 
-        <ul className="navbar-nav ml-auto">
-          <li className="nav-item">
-            <Link to="/toppage" className="nav-link">
-              Register
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link to="/toppage" className="nav-link">
-              Sign in
-            </Link>
-          </li>
-        </ul>
+        {user ? (
+          <ul className="navbar-nav ml-auto">
+            <li className="nav-item">
+              <Link to="/" className="nav-link">
+                {user.username} 's Library
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/" onClick ={
+                () => {
+                  setUser(null);
+                }
+              } className="nav-link">
+                Sign out
+              </Link>
+            </li>
+          </ul>
+        ) : (
+          <ul className="navbar-nav ml-auto">
+            <li className="nav-item">
+              <Link to="/register" className="nav-link">
+                Register
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/signin" className="nav-link">
+                Sign in
+              </Link>
+            </li>
+          </ul>
+        )}
       </div>
     </nav>
   );

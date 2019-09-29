@@ -3,7 +3,6 @@ import React from "react";
 export default function Table(props) {
   return (
     <>
-    
       <tr>
         <th scope="row">{props.rank}</th>
         <td>

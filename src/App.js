@@ -1,21 +1,32 @@
-import React from "react";
+import React, { useState, useMemo } from "react";
 import "./App.css";
 import NavBar from "./NavBar";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import HomePage from "./Pages/HomePage";
 import TopPage from "./Pages/TopPage";
+import Register from "./Pages/Register";
+import SignIn from "./Pages/SignIn";
+import { UserContext } from "./Components/UserContext";
 
 function App() {
+  
+  const [user, setUser] = useState(null);
+  const value = useMemo(() => ({ user, setUser }), [user, setUser]);
+
   return (
     <BrowserRouter>
-      <NavBar />
-      <Switch>
-        <Route exact path="/" component={HomePage} />
-        <Route exact path="/toppage" component={TopPage} />
-        {/* <Route exact path = "/page2" component = {Page2} />
+      <UserContext.Provider value = {value}>
+        <NavBar />
+        <Switch>
+          <Route exact path="/" component={HomePage} />
+          <Route exact path="/toppage" component={TopPage} />
+          <Route exact path="/register" component={Register} />
+          <Route exact path="/signin" component={SignIn} />
+          {/* <Route exact path = "/page2" component = {Page2} />
           <Route exact path = "/reducer" component = {Reducer} />
           <Route component={PageError} /> */}
-      </Switch>
+        </Switch>
+      </UserContext.Provider>
     </BrowserRouter>
   );
 }
