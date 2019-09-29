@@ -3,11 +3,17 @@ import { Link } from "react-router-dom";
 import { UserContext } from "./Components/UserContext";
 
 export default function Navbar() {
-  const [value, setValue] = useState("Anime");
+  const [type, setType] = useState("anime");
   const { user, setUser } = useContext(UserContext);
 
   const handleChange = event => {
-    setValue(event.target.value);
+    setType(event.target.value);
+  };
+
+  const [title, setTitle] = useState("");
+
+  const handleInputChange = event => {
+    setTitle(event.target.value);
   };
 
   return (
@@ -28,26 +34,43 @@ export default function Navbar() {
         <form className="form-inline my-2 my-lg-0">
           <div className="form-group">
             <select
-              value={value}
+              value={type}
               onChange={handleChange}
+              name="type"
               className="form-control"
             >
-              <option value="Anime">Anime</option>
-              <option value="Manga">Manga</option>
+              <option value="anime">Anime</option>
+              <option value="manga">Manga</option>
             </select>
           </div>
 
           <input
             className="form-control mr-sm-2"
-            type="search"
+            type="text"
+            name="title"
             placeholder="Search"
+            value={title}
+            onChange={handleInputChange}
           />
-          <button
-            className="btn btn-outline-success my-2 my-sm-0"
-            type="submit"
+          <Link
+            to={{
+              pathname: "/search",
+              state: {
+                type,
+                title
+              }
+            }}
           >
-            Search
-          </button>
+            <button
+              className="btn btn-outline-success my-2 my-sm-0"
+              type="submit"
+              onClick={event => {
+                setTitle("");
+              }}
+            >
+              Search
+            </button>
+          </Link>
         </form>
 
         {user ? (
@@ -58,11 +81,13 @@ export default function Navbar() {
               </Link>
             </li>
             <li className="nav-item">
-              <Link to="/" onClick ={
-                () => {
+              <Link
+                to="/"
+                onClick={() => {
                   setUser(null);
-                }
-              } className="nav-link">
+                }}
+                className="nav-link"
+              >
                 Sign out
               </Link>
             </li>

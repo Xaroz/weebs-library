@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
-import ImageSeasonal from "../Components/ImageSeasonal";
+import Image from "../Components/Image";
 import { useFetch } from "../Components/useFetch";
 
 export default function HomePage() {
   const { data } = useFetch("https://api.jikan.moe/v3/season");
 
   useEffect(() => {
-    document.title = "Homepage";
+    document.title = "Weeb's Library";
   });
 
   return (
@@ -23,7 +23,7 @@ export default function HomePage() {
             ? "loading..."
             : data.anime.map(anime =>
                 anime.type === "TV" || anime.type === "Movie" ? (
-                  <ImageSeasonal
+                  <Image
                     key={anime.mal_id}
                     imageUrl={anime.image_url}
                     title={anime.title}

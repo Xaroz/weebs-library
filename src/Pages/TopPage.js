@@ -31,7 +31,7 @@ export default function TopPage() {
           <h1 className="display-4">Top Rated</h1>
           <button
             type="button"
-            className="btn btn-outline-secondary btn-lg"
+            className="btn btn-outline-secondary btn-lg font-weight-bold"
             onClick={changeType}
           >
             {buttonName}

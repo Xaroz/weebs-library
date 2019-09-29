@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Input from "../Components/Input";
 
 export default function Register() {
+  useEffect(() => {
+    document.title = "Register";
+  });
+
   return (
     <div className="container">
       <h1>Register</h1>

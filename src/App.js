@@ -6,6 +6,7 @@ import HomePage from "./Pages/HomePage";
 import TopPage from "./Pages/TopPage";
 import Register from "./Pages/Register";
 import SignIn from "./Pages/SignIn";
+import SearchPage from "./Pages/SearchPage";
 import { UserContext } from "./Components/UserContext";
 
 function App() {
@@ -22,9 +23,7 @@ function App() {
           <Route exact path="/toppage" component={TopPage} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/signin" component={SignIn} />
-          {/* <Route exact path = "/page2" component = {Page2} />
-          <Route exact path = "/reducer" component = {Reducer} />
-          <Route component={PageError} /> */}
+          <Route exact path="/search" component={SearchPage} />
         </Switch>
       </UserContext.Provider>
     </BrowserRouter>

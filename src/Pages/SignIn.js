@@ -1,11 +1,13 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import Input from "../Components/Input";
 import { UserContext } from "../Components/UserContext";
 import { loginTest } from "../Components/loginTest";
 
 export default function Register() {
   const { setUser } = useContext(UserContext);
-
+  useEffect(() => {
+    document.title = "Sign in";
+  });
   return (
     <div className="container">
       <h1>Sign in to Weeb's Library</h1>
