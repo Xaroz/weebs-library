@@ -7,6 +7,8 @@ import TopPage from "./Pages/TopPage";
 import Register from "./Pages/Register";
 import SignIn from "./Pages/SignIn";
 import SearchPage from "./Pages/SearchPage";
+import AnimeDetail from "./Pages/AnimeDetail";
+import MangaDetail from "./Pages/MangaDetail";
 import { UserContext } from "./Components/UserContext";
 
 function App() {
@@ -24,6 +26,8 @@ function App() {
           <Route exact path="/register" component={Register} />
           <Route exact path="/signin" component={SignIn} />
           <Route exact path="/search" component={SearchPage} />
+          <Route exact path="/anime" component={AnimeDetail} />
+          <Route exact path="/manga" component={MangaDetail} />
         </Switch>
       </UserContext.Provider>
     </BrowserRouter>

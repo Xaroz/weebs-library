@@ -3,8 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "react": "^16.10.0",
-    "react-dom": "^16.10.0",
     "react-router-dom": "^5.1.1",
     "react-scripts": "3.1.2"
   },
@@ -28,5 +26,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@iconify/icons-bytesize": "^1.0.0",
+    "@iconify/react": "^1.1.1"
   }
 }

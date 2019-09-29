@@ -10,8 +10,12 @@ export default function SearchPage(props) {
   useEffect(() => {
     document.title = "Search result for " + title;
   });
-  
-  const { data } = useFetch(
+
+  useEffect(() => {
+    setPage(1);
+  }, [title]);
+
+  const { data, loading } = useFetch(
     `https://api.jikan.moe/v3/search/${type}?q=${title}&limit=12&page=${page}`
   );
   const style = {
@@ -19,8 +23,8 @@ export default function SearchPage(props) {
   };
 
   const scroll = () => {
-    const elemento = document.querySelector(".jumbotron");
-    elemento.scrollIntoView("smooth", "end");
+    const element = document.querySelector(".jumbotron");
+    element.scrollIntoView("smooth", "end");
   };
 
   return (
@@ -33,7 +37,7 @@ export default function SearchPage(props) {
 
       <div className="container">
         <div className="row">
-          {!data
+          {loading
             ? "loading..."
             : data.results.map(result => (
                 <Image
@@ -41,6 +45,8 @@ export default function SearchPage(props) {
                   imageUrl={result.image_url}
                   title={result.title}
                   type={result.type}
+                  sourceType = {type}
+                  mal_id={result.mal_id}
                 />
               ))}
         </div>
@@ -61,6 +67,9 @@ export default function SearchPage(props) {
             >
               Previous
             </button>
+          </li>
+          <li className="page-item active">
+            <span className="page-link">{page}</span>
           </li>
           <li className="page-item">
             <button

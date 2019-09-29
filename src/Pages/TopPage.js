@@ -58,6 +58,8 @@ export default function TopPage() {
                     imageUrl={top.image_url}
                     score={top.score}
                     title={top.title}
+                    sourceType = {type}
+                    mal_id = {top.mal_id}
                   />
                 ))}
           </tbody>

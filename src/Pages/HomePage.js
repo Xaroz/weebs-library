@@ -28,6 +28,8 @@ export default function HomePage() {
                     imageUrl={anime.image_url}
                     title={anime.title}
                     type={anime.type}
+                    sourceType= "anime"
+                    mal_id = {anime.mal_id}
                   />
                 ) : null
               )}
