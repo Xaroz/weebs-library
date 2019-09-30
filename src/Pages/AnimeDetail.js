@@ -3,17 +3,17 @@ import { useFetch } from "../Components/useFetch";
 import { InlineIcon } from "@iconify/react";
 import starIcon from "@iconify/icons-bytesize/star";
 import { UserContext } from "../Components/UserContext";
+import AddDeleteButton from "../Components/AddDeleteButton";
 
 export default function AnimeDetail(props) {
   const type = props.location.state.type;
   const mal_id = props.location.state.mal_id;
-  const { user } = useContext(UserContext);
+  const { user, animeList, setAnimeList } = useContext(UserContext);
 
   const { data, loading } = useFetch(
     `https://api.jikan.moe/v3/${type}/${mal_id}`
   );
 
-  console.log(data);
   return (
     <div className="container">
       {loading ? (
@@ -36,14 +36,9 @@ export default function AnimeDetail(props) {
               </h4>
               <h4>Aired from: </h4>
               <p>{data.aired.string}</p>
-              {user ? (
-                <button
-                  type="button"
-                  className="btn btn-outline-primary btn-lg"
-                >
-                  Add to library
-                </button>
-              ) : null}
+              {user ? 
+                <AddDeleteButton data = {data} list = {animeList} setList = {setAnimeList} type = {type}/>
+                : null}
             </div>
           </div>
           <div className="container">

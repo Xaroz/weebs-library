@@ -13,7 +13,7 @@ export default function SearchPage(props) {
 
   useEffect(() => {
     setPage(1);
-  }, [title]);
+  }, [title,type]);
 
   const { data, loading } = useFetch(
     `https://api.jikan.moe/v3/search/${type}?q=${title}&limit=12&page=${page}`

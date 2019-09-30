@@ -1,15 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useFetch } from "../Components/useFetch";
 import { InlineIcon } from "@iconify/react";
 import starIcon from "@iconify/icons-bytesize/star";
+import { UserContext } from "../Components/UserContext";
+import AddDeleteButton from "../Components/AddDeleteButton";
 
 export default function MangaDetail(props) {
   const type = props.location.state.type;
   const mal_id = props.location.state.mal_id;
-
+  const { user, mangaList, setMangaList } = useContext(UserContext);
   const { data, loading } = useFetch(
     `https://api.jikan.moe/v3/${type}/${mal_id}`
   );
+  
 
   console.log(data);
   return (
@@ -34,9 +37,9 @@ export default function MangaDetail(props) {
               </h4>
               <h4>Published from: </h4>
               <p>{data.published.string}</p>
-              <button type="button" className="btn btn-outline-primary btn-lg">
-                Add to library
-              </button>
+              {user ? (
+                <AddDeleteButton data = {data} list = {mangaList} setList = {setMangaList} type = {type}/>
+              ) : null}
             </div>
           </div>
           <div className="container">

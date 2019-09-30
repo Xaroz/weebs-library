@@ -12,14 +12,18 @@ export default function TopPage() {
   },[buttonName]);
   
   const changeType = () => {
+    let curType = "";
+    let curButton = "";
     if (type === "anime") {
-      setType("manga");
-      setButtonName("Manga")
+      curType = "manga";
+      curButton = "Manga";
     }
     else {
-      setType("anime");
-      setButtonName("Anime")
+      curType = "anime";
+      curButton = "Anime";
     }
+    setType(curType);
+    setButtonName(curButton);
   };
 
   const { data } = useFetch(`https://api.jikan.moe/v3/top/${type}/1`);

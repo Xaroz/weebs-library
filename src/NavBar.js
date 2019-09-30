@@ -76,7 +76,7 @@ export default function Navbar() {
         {user ? (
           <ul className="navbar-nav ml-auto">
             <li className="nav-item">
-              <Link to="/" className="nav-link">
+              <Link to="/library" className="nav-link">
                 {user.username} 's Library
               </Link>
             </li>
