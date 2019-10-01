@@ -1,10 +1,22 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Input from "../Components/Input";
 import { UserContext } from "../Components/UserContext";
 import { loginTest } from "../Components/loginTest";
 
-export default function Register() {
+export default function Signin() {
   const { setUser } = useContext(UserContext);
+
+  const initialFormState = {
+    email: "",
+    password: "",
+  };
+
+  const [login, setLogin] = useState(initialFormState);
+
+  const handleInputChange = event => {
+    const { name, value } = event.target;
+    setLogin({ ...login, [name]: value });
+  };
   useEffect(() => {
     document.title = "Sign in";
   });
@@ -16,14 +28,16 @@ export default function Register() {
         <div className="col-6">
           <form className="card p-2">
             <Input
-              labelName="Username"
-              typeName="username"
-              placeholderName="Enter username"
+              labelName="Email"
+              typeName="email"
+              placeholderName="Enter email"
+              handleInputChange = {handleInputChange}
             />
             <Input
               labelName="Password"
               typeName="password"
               placeholderName="Enter password"
+              handleInputChange = {handleInputChange}
             />
             <button
               onClick={async event => {

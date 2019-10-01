@@ -9,6 +9,8 @@ export default function Input(props) {
         className="form-control"
         id={props.typeName}
         placeholder={props.placeholderName}
+        onChange={props.handleInputChange}
+        name = {props.typeName}
       ></input>
     </div>
   );

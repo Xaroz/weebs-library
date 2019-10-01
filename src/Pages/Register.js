@@ -1,10 +1,24 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Input from "../Components/Input";
 
 export default function Register() {
   useEffect(() => {
     document.title = "Register";
   });
+  const initialFormState = {
+    username: "",
+    email: "",
+    password: "",
+    confirmPassword: ""
+  }
+  const [user, setUser] = useState(initialFormState);
+
+  const handleInputChange = event => {
+    const { name, value } = event.target;
+    setUser({ ...user, [name]: value });
+  };
+  
+
 
   return (
     <div className="container">
@@ -17,16 +31,19 @@ export default function Register() {
               labelName="Email"
               typeName="email"
               placeholderName="Enter email"
+              handleInputChange = {handleInputChange}
             />
             <Input
               labelName="Username"
               typeName="username"
               placeholderName="Enter username"
+              handleInputChange = {handleInputChange}
             />
             <Input
               labelName="Password"
               typeName="password"
               placeholderName="Enter password"
+              handleInputChange = {handleInputChange}
             />
             <div className="form-group">
               <label htmlFor="confirm-password">Confirm Password</label>
@@ -34,7 +51,9 @@ export default function Register() {
                 type="password"
                 id="confirm-password"
                 className="form-control"
-                placeholder="Confirm Password"
+                placeholder="Confirm Password"     
+                name = "confirmPassword"
+                onChange = {handleInputChange}     
               />
             </div>
             <button type="submit" className="btn btn-secondary">
