@@ -11,6 +11,7 @@ export default function Input(props) {
         placeholder={props.placeholderName}
         onChange={props.handleInputChange}
         name = {props.typeName}
+        required
       ></input>
     </div>
   );

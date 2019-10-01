@@ -53,7 +53,8 @@ export default function Register() {
                 className="form-control"
                 placeholder="Confirm Password"     
                 name = "confirmPassword"
-                onChange = {handleInputChange}     
+                onChange = {handleInputChange} 
+                required    
               />
             </div>
             <button type="submit" className="btn btn-secondary">
